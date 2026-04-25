@@ -3,6 +3,7 @@
 import Link from 'next/link';
 
 import { Mail} from 'lucide-react';
+import { FaGithub, FaLinkedin, FaTelegram, FaXTwitter } from "react-icons/fa6";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -64,7 +65,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="text-gray-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-white transition"
               >
-                {/* <GitHub size={20} /> */}
+                <FaGithub size={20} />
               </a>
               <a
                 href="https://linkedin.com"
@@ -72,7 +73,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="text-gray-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-white transition"
               >
-                {/* <Linkedin size={20} /> */}
+                <FaLinkedin size={20} />
               </a>
               <a
                 href="https://twitter.com"
@@ -80,7 +81,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="text-gray-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-white transition"
               >
-                {/* <Twitter size={20} /> */}
+                <FaXTwitter size={20} />
               </a>
               <a
                 href="mailto:contact@laxmanpawar.dev"
