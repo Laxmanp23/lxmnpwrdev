@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-import { GitHub, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Mail} from 'lucide-react';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -64,7 +64,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="text-gray-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-white transition"
               >
-                <Github size={20} />
+                {/* <GitHub size={20} /> */}
               </a>
               <a
                 href="https://linkedin.com"
@@ -72,7 +72,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="text-gray-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-white transition"
               >
-                <Linkedin size={20} />
+                {/* <Linkedin size={20} /> */}
               </a>
               <a
                 href="https://twitter.com"
@@ -80,7 +80,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="text-gray-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-white transition"
               >
-                <Twitter size={20} />
+                {/* <Twitter size={20} /> */}
               </a>
               <a
                 href="mailto:contact@laxmanpawar.dev"
