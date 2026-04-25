@@ -3,7 +3,7 @@
 import Link from 'next/link';
 
 import { Mail} from 'lucide-react';
-import { FaGithub, FaLinkedin, FaTelegram, FaXTwitter } from "react-icons/fa6";
+import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();

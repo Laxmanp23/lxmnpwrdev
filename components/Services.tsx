@@ -12,6 +12,7 @@ interface Service {
 
 interface ServicesProps {
   services?: Service[];
+  showHeader?: boolean;
 }
 
 const defaultServices = [
@@ -53,24 +54,26 @@ const defaultServices = [
   },
 ];
 
-export function Services({ services = defaultServices }: ServicesProps) {
+export function Services({ services = defaultServices, showHeader = true }: ServicesProps) {
   return (
-    <section className="py-24 bg-white dark:bg-gray-900 relative transition-colors duration-300">
+    <section className={`bg-white dark:bg-gray-900 relative transition-colors duration-300 ${showHeader ? 'py-24' : 'py-12'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            My <span className="text-cyan-400">Services</span>
-          </h2>
-          <p className="text-gray-500 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-            Comprehensive solutions tailored to bring your digital vision to life
-          </p>
-        </motion.div>
+        {showHeader && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+              My <span className="text-cyan-400">Services</span>
+            </h2>
+            <p className="text-gray-500 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+              Comprehensive solutions tailored to bring your digital vision to life
+            </p>
+          </motion.div>
+        )}
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
