@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink,} from 'lucide-react';
 
 interface Project {
   id: string;
@@ -109,7 +109,7 @@ export function Projects({ projects = defaultProjects, showViewAll = true }: Pro
                         rel="noopener noreferrer"
                         className="p-3 bg-orange-500 rounded-lg hover:bg-orange-400 transition"
                       >
-                        <Github size={20} className="text-black" />
+                        {/* <Github size={20} className="text-black" /> */}
                       </a>
                     )}
                   </div>
