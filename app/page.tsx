@@ -3,10 +3,33 @@ import { Services } from '@/components/Services';
 import { Projects } from '@/components/Projects';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import type { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Laxman Pawar - Full-Stack Developer',
-  description: 'Building scalable web and software solutions',
+export const metadata: Metadata = {
+  title: 'Laxman Pawar - Full-Stack Developer | Web Development Services Across India',
+  description: 'Professional full-stack web development services in Indore, Bhopal, Pune, Bangalore, Chennai, Mumbai, and Delhi. Custom web solutions, e-commerce platforms, and SaaS applications built with Next.js, React, and Node.js.',
+  keywords: [
+    'web developer',
+    'full-stack developer',
+    'web development',
+    'Next.js developer',
+    'React developer',
+    'Node.js developer',
+    'TypeScript expert',
+    'freelance developer',
+    'custom web solutions',
+    'e-commerce development',
+    'SaaS development',
+    'API development',
+    'responsive web design',
+    'web application development',
+  ],
+  openGraph: {
+    title: 'Laxman Pawar - Full-Stack Developer | Web Development Services',
+    description: 'Professional full-stack web development across major Indian cities. Building scalable web solutions with modern technologies.',
+    type: 'website',
+    url: 'https://laxmanpawar.dev',
+  },
 };
 const testimonials = [
   {

@@ -3,10 +3,29 @@ import { Footer } from '@/components/Footer';
 import { Services } from '@/components/Services';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import type { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Services & Solutions - Laxman Pawar',
-  description: 'Explore my professional web development services and software solutions tailored for your business needs.',
+export const metadata: Metadata = {
+  title: 'Web Development Services | Full-Stack Development Solutions',
+  description: 'Professional web development services including custom websites, e-commerce platforms, SaaS applications, and API development. Available across India (Indore, Bhopal, Pune, Bangalore, Chennai, Mumbai, Delhi).',
+  keywords: [
+    'web development services',
+    'full-stack development',
+    'custom web solutions',
+    'e-commerce development',
+    'SaaS development',
+    'API development',
+    'web application development',
+    'website development',
+    'frontend development',
+    'backend development',
+    'web development India',
+  ],
+  openGraph: {
+    title: 'Web Development Services | Full-Stack Development Solutions',
+    description: 'Professional web development services tailored for your business needs. Available across major Indian cities.',
+    type: 'website',
+  },
 };
 
 export default function ServicesPage() {

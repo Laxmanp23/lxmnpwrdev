@@ -94,6 +94,29 @@ export function Hero() {
                 )}
               </div>
             </motion.div>
+
+            {/* Available Locations */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7 }}
+              className="mt-8 pt-6 border-t border-cyan-500/30"
+            >
+              <p className="text-gray-500 dark:text-gray-400 text-sm mb-4">Available In</p>
+              <div className="flex flex-wrap gap-2">
+                {['Indore', 'Bhopal', 'Pune', 'Bangalore', 'Chennai', 'Mumbai', 'Delhi'].map(
+                  (city, i) => (
+                    <Link
+                      key={i}
+                      href={`/cities/${city.toLowerCase()}`}
+                      className="px-3 py-1 bg-white dark:bg-orange-500/10 border border-gray-200 dark:border-orange-500/40 text-gray-700 dark:text-orange-300 text-sm rounded-full hover:bg-orange-50 dark:hover:bg-orange-500/20 transition-colors"
+                    >
+                      {city}
+                    </Link>
+                  )
+                )}
+              </div>
+            </motion.div>
           </motion.div>
 
           {/* Right visual */}

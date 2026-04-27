@@ -1,9 +1,23 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import type { Metadata } from 'next';
 
-export const metadata = {
-  title: 'About - Laxman Pawar',
-  description: 'Learn more about Laxman Pawar and his development journey',
+export const metadata: Metadata = {
+  title: 'About Laxman Pawar | Full-Stack Developer',
+  description: 'Learn about Laxman Pawar, a full-stack web developer from Indore, India. 5+ years of experience in Next.js, React, Node.js, and building scalable web solutions for businesses across India.',
+  keywords: [
+    'about Laxman Pawar',
+    'web developer biography',
+    'full-stack developer',
+    'developer profile',
+    'developer experience',
+    'Next.js expert',
+  ],
+  openGraph: {
+    title: 'About Laxman Pawar | Full-Stack Developer',
+    description: 'Learn about Laxman Pawar and his web development journey',
+    type: 'website',
+  },
 };
 
 export default function About() {

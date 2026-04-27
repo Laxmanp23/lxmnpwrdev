@@ -2,10 +2,23 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { ContactForm } from '@/components/ContactForm';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import type { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Contact - Laxman Pawar',
-  description: 'Get in touch with Laxman Pawar for your project',
+export const metadata: Metadata = {
+  title: 'Contact Us | Get a Free Web Development Consultation',
+  description: 'Contact Laxman Pawar for your web development project. Available for consultation across Indore, Bhopal, Pune, Bangalore, Chennai, Mumbai, and Delhi.',
+  keywords: [
+    'contact web developer',
+    'get in touch',
+    'web development consultation',
+    'hire web developer',
+    'contact form',
+  ],
+  openGraph: {
+    title: 'Contact Us | Get a Free Consultation',
+    description: 'Contact Laxman Pawar for your web development project',
+    type: 'website',
+  },
 };
 
 export default function Contact() {
@@ -48,7 +61,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-white">Phone</h3>
-                    <p className="text-gray-400 mt-1">+1 (555) 123-4567</p>
+                    <p className="text-gray-400 mt-1">+91 7000864390</p>
                   </div>
                 </div>
 

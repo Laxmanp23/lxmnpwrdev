@@ -1,0 +1,23 @@
+# Robots.txt for Laxman Pawar Portfolio
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api
+
+# Crawl delay for all bots
+Crawl-delay: 1
+
+# Allow specific search engines
+User-agent: Googlebot
+Allow: /
+Disallow: /admin
+Disallow: /api
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin
+Disallow: /api
+
+# Sitemaps
+Sitemap: https://laxmanpawar.dev/sitemap.xml
+Sitemap: https://laxmanpawar.dev/cities-sitemap.xml

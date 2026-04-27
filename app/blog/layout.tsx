@@ -1,16 +1,29 @@
-export const metadata = {
-  title: 'Blog | Laxman Pawar - Software Engineer',
-  description: 'Read the latest insights, tutorials, and thoughts on web development, scalable systems, and the tech industry by Laxman Pawar.',
-  keywords: 'Web Development, Software Engineering, React, Next.js, Tutorials, Programming Blog, Laxman Pawar',
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Blog | Web Development Tips, Tutorials, and Best Practices',
+  description: 'Read articles and tutorials about web development, Next.js, React, Node.js, and web development best practices. Learn from real-world examples and expert insights.',
+  keywords: [
+    'web development blog',
+    'Next.js tutorials',
+    'React tips',
+    'Node.js guide',
+    'web development best practices',
+    'programming tutorials',
+    'developer blog',
+    'full-stack development',
+    'TypeScript guide',
+    'API development',
+  ],
   openGraph: {
-    title: 'Laxman Pawar | Tech Blog',
-    description: 'Insights, tutorials, and thoughts on web development and scalable systems.',
+    title: 'Blog | Web Development Tips and Tutorials',
+    description: 'Read articles and tutorials about web development and programming',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Laxman Pawar | Tech Blog',
-    description: 'Insights, tutorials, and thoughts on web development and scalable systems.',
+    title: 'Blog | Web Development Tips and Tutorials',
+    description: 'Articles and tutorials on web development and programming',
   }
 };
 

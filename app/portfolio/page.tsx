@@ -3,10 +3,26 @@ import { Footer } from '@/components/Footer';
 import { Projects } from '@/components/Projects';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import type { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Portfolio - Laxman Pawar',
-  description: 'Explore my creative portfolio, featuring full-stack web applications, scalable backend systems, and modern frontend designs.',
+export const metadata: Metadata = {
+  title: 'Portfolio | Full-Stack Development Projects | Web Development Examples',
+  description: 'Explore a portfolio of full-stack web applications, e-commerce platforms, SaaS solutions, and backend APIs. See real-world projects built with Next.js, React, Node.js, and more.',
+  keywords: [
+    'portfolio',
+    'web development projects',
+    'full-stack projects',
+    'react projects',
+    'next.js projects',
+    'web application examples',
+    'case studies',
+    'development portfolio',
+  ],
+  openGraph: {
+    title: 'Portfolio | Full-Stack Development Projects',
+    description: 'Explore a portfolio of full-stack web applications and development projects.',
+    type: 'website',
+  },
 };
 
 export default function PortfolioPage() {
