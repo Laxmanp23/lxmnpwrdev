@@ -95,6 +95,7 @@ export function Footer() {
 
         {/* Bottom */}
         <div className="border-t border-gray-200 dark:border-cyan-500/20 pt-2 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-600 dark:text-gray-400 text-sm">hello Buddy</p>
           <p className="text-gray-600 dark:text-gray-400 text-sm">
             &copy; {currentYear} Laxman Pawar. All rights reserved.
           </p>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { ExternalLink} from 'lucide-react';
@@ -92,8 +92,38 @@ const defaultProjects = [
   }
 ];
 
-export function Projects({ projects = defaultProjects, showViewAll = true }: ProjectsProps) {
+export function Projects({ projects: initialProjects = defaultProjects, showViewAll = true }: ProjectsProps) {
   const [filter, setFilter] = useState('All');
+  const [projects, setProjects] = useState<Project[]>(initialProjects);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    // Fetch projects from API
+    const fetchProjects = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch('/api/projects');
+        if (response.ok) {
+          const data = await response.json();
+          // Map database projects to include category from technologies if needed
+          const mappedProjects = data.map((project: any) => ({
+            ...project,
+            category: project.category || 'Full Stack',
+          }));
+          setProjects(mappedProjects);
+        }
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+        // Use default projects if fetch fails
+        setProjects(initialProjects);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, [initialProjects]);
+
   const categories = ['All', ...Array.from(new Set(projects.map((p) => p.category).filter(Boolean)))];
 
   const filteredProjects = filter === 'All' ? projects : projects.filter((p) => p.category === filter);

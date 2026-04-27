@@ -1,14 +1,30 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
-export default function NewProject() {
+interface ProjectFormData {
+  title: string;
+  description: string;
+  image: string;
+  technologies: string;
+  category: string;
+  liveUrl: string;
+  githubUrl: string;
+  featured: boolean;
+  order: number;
+}
+
+export default function EditProject() {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
-  const [formData, setFormData] = useState({
+  const params = useParams();
+  const projectId = params.id as string;
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState<ProjectFormData>({
     title: '',
     description: '',
     image: '',
@@ -19,6 +35,34 @@ export default function NewProject() {
     featured: false,
     order: 0,
   });
+
+  useEffect(() => {
+    const fetchProject = async () => {
+      try {
+        const response = await fetch(`/api/projects/${projectId}`);
+        if (response.ok) {
+          const project = await response.json();
+          setFormData({
+            title: project.title || '',
+            description: project.description || '',
+            image: project.image || '',
+            technologies: project.technologies || '',
+            category: project.category || 'Full Stack',
+            liveUrl: project.liveUrl || '',
+            githubUrl: project.githubUrl || '',
+            featured: project.featured || false,
+            order: project.order || 0,
+          });
+        }
+      } catch (error) {
+        console.error('Error fetching project:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProject();
+  }, [projectId]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -32,11 +76,11 @@ export default function NewProject() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsLoading(true);
+    setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/projects', {
-        method: 'POST',
+      const response = await fetch(`/api/projects/${projectId}`, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -46,15 +90,23 @@ export default function NewProject() {
       if (response.ok) {
         router.push('/admin/projects');
       } else {
-        alert('Error creating project');
+        alert('Error updating project');
       }
     } catch (error) {
       console.error('Error:', error);
       alert('An error occurred');
     } finally {
-      setIsLoading(false);
+      setIsSubmitting(false);
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <p className="text-gray-400">Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-black">
@@ -80,12 +132,12 @@ export default function NewProject() {
       {/* Main Content */}
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">Add New Project</h1>
-          <p className="text-gray-400">Create a new portfolio project</p>
+          <h1 className="text-4xl font-bold text-white mb-2">Edit Project</h1>
+          <p className="text-gray-400">Update your portfolio project</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="bg-black border-2 border-cyan-500/30/5 border border-cyan-500/20 rounded-xl p-6 space-y-6">
+          <div className="bg-black border-2 border-cyan-500/20 rounded-xl p-6 space-y-6">
             {/* Title */}
             <div>
               <label htmlFor="title" className="block text-white font-semibold mb-2">
@@ -134,6 +186,9 @@ export default function NewProject() {
                 className="w-full px-4 py-3 bg-cyan-500/10 border border-cyan-500/30 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition"
                 placeholder="https://example.com/image.jpg"
               />
+              {formData.image && (
+                <img src={formData.image} alt="Preview" className="mt-4 max-h-48 rounded-lg" />
+              )}
             </div>
 
             {/* Technologies */}
@@ -173,7 +228,7 @@ export default function NewProject() {
             {/* Live URL */}
             <div>
               <label htmlFor="liveUrl" className="block text-white font-semibold mb-2">
-                Live URL
+                Live URL (optional)
               </label>
               <input
                 type="url"
@@ -182,14 +237,14 @@ export default function NewProject() {
                 value={formData.liveUrl}
                 onChange={handleChange}
                 className="w-full px-4 py-3 bg-cyan-500/10 border border-cyan-500/30 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition"
-                placeholder="https://example.com"
+                placeholder="https://project.com"
               />
             </div>
 
             {/* GitHub URL */}
             <div>
               <label htmlFor="githubUrl" className="block text-white font-semibold mb-2">
-                GitHub URL
+                GitHub URL (optional)
               </label>
               <input
                 type="url"
@@ -198,21 +253,21 @@ export default function NewProject() {
                 value={formData.githubUrl}
                 onChange={handleChange}
                 className="w-full px-4 py-3 bg-cyan-500/10 border border-cyan-500/30 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition"
-                placeholder="https://github.com/user/repo"
+                placeholder="https://github.com/username/repo"
               />
             </div>
 
             {/* Featured */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               <input
                 type="checkbox"
                 id="featured"
                 name="featured"
                 checked={formData.featured}
                 onChange={handleChange}
-                className="w-4 h-4 rounded border-cyan-500/30 text-cyan-500 focus:ring-purple-500"
+                className="w-4 h-4 text-cyan-500 bg-cyan-500/20 border-cyan-500/30 rounded cursor-pointer"
               />
-              <label htmlFor="featured" className="text-white font-semibold">
+              <label htmlFor="featured" className="text-white font-semibold cursor-pointer">
                 Featured Project
               </label>
             </div>
@@ -234,18 +289,18 @@ export default function NewProject() {
             </div>
           </div>
 
-          {/* Submit Buttons */}
+          {/* Buttons */}
           <div className="flex gap-4">
             <button
               type="submit"
-              disabled={isLoading}
-              className="flex-1 px-6 py-3 bg-cyan-500 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={isSubmitting}
+              className="flex-1 px-6 py-3 bg-cyan-500 text-white rounded-lg font-semibold hover:bg-cyan-400 disabled:opacity-50 transition"
             >
-              {isLoading ? 'Creating...' : 'Create Project'}
+              {isSubmitting ? 'Updating...' : 'Update Project'}
             </button>
             <Link
               href="/admin/projects"
-              className="flex-1 px-6 py-3 border border-cyan-500/30 text-white rounded-lg font-semibold hover:bg-cyan-500/10 transition text-center"
+              className="flex-1 px-6 py-3 bg-gray-700 text-white rounded-lg font-semibold hover:bg-gray-600 transition text-center"
             >
               Cancel
             </Link>

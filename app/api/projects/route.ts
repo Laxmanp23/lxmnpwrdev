@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { title, description, image, technologies, liveUrl, githubUrl, featured, order } = body;
+    const { title, description, image, technologies, category, liveUrl, githubUrl, featured, order } = body;
 
     if (!title || !description) {
       return NextResponse.json(
@@ -48,6 +48,7 @@ export async function POST(request: NextRequest) {
         description,
         image,
         technologies,
+        category: category || 'Full Stack',
         liveUrl,
         githubUrl,
         featured: featured || false,

@@ -27,6 +27,7 @@ model Project {
   description String     @db.LongText
   image       String
   technologies String
+  category    String     @default("Full Stack")
   liveUrl     String?
   githubUrl   String?
   featured    Boolean    @default(false)
